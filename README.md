@@ -35,98 +35,96 @@ Example:
 will return an output in console:
 
 ```
- Monthly Payslip for: "Ren"
-  Gross Monthly Income: $5000.00
-   Monthly Income Tax: $500.00
-    Net Monthly Income: $4500.00
-    ```
-    - 2 decimal places
+Monthly Payslip for: "Ren"
+Gross Monthly Income: $5000.00
+Monthly Income Tax: $500.00
+Net Monthly Income: $4500.00
+```
+- 2 decimal places
 
-    2. Create a REST API to expose your function [You can get some idea here](https://www.google.com/search?safe=active&ei=9euNXp-VPK6d4-EP-Ou7oAM&q=simple+rest+api+ruby&oq=simple+rest+api+ruby)
-    - GET
-    - REQUEST Parameters should include employee_name and annual_salary
-    - The response body should return the following structure:
-    ```
-    {
-      "employee_name": string,
-        "gross_monthly_income": string,
-	  "monthly_income_tax": string,
-	    "net_monthly_income": string,
-	    }
-	    ```
+2. Create a REST API to expose your function [You can get some idea here](https://www.google.com/search?safe=active&ei=9euNXp-VPK6d4-EP-Ou7oAM&q=simple+rest+api+ruby&oq=simple+rest+api+ruby)
+- GET
+- REQUEST Parameters should include employee_name and annual_salary
+- The response body should return the following structure:
+```
+{
+	"employee_name": string,
+	"gross_monthly_income": string,
+	"monthly_income_tax": string,
+	"net_monthly_income": string,
+}
+```
 
-	    ## The Tax Bracket is as follows
+## The Tax Bracket is as follows
 
-	    | Salary Bracket | Rate |
-	    |----------|:-------------:|
-	    | first 0 - 20000 | 0% |
-	    | next 20001-40000 | 10% |
-	    | next 40001-80000 | 20% |
-	    | next 80001-180000 | 30% |
-	    | 180001 and above | 40% |
+| Salary Bracket | Rate |
+|----------|:-------------:|
+| first 0 - 20000 | 0% |
+| next 20001-40000 | 10% |
+| next 40001-80000 | 20% |
+| next 80001-180000 | 30% |
+| 180001 and above | 40% |
 
-	    ## Sample Tax Computation 1
+## Sample Tax Computation 1
 
-	    Annual Salary 60000
+Annual Salary 60000
 
-	    | Salary Bracket | Rate | Taxable Amount | Total Tax |
-	    |---|---|---|---|
-	    | first 0 - 20000 | 0% | 20000 | 0 |
-	    | next 20001-40000 | 10% | 20000 | 2000 |
-	    | next 40001-80000 | 20% | 20000 | 4000 |
-	    | next 80001-180000 | 30% | 0 | 0 |
-	    | 180001 and above | 40% | 0 | 0 |
+| Salary Bracket | Rate | Taxable Amount | Total Tax |
+|---|---|---|---|
+| first 0 - 20000 | 0% | 20000 | 0 |
+| next 20001-40000 | 10% | 20000 | 2000 |
+| next 40001-80000 | 20% | 20000 | 4000 |
+| next 80001-180000 | 30% | 0 | 0 |
+| 180001 and above | 40% | 0 | 0 |
 
-	    Total Taxable Amount
-	    = 20000 + 20000 + 20000
-	    = 60000
+Total Taxable Amount
+= 20000 + 20000 + 20000
+= 60000
 
-	    Total Annual Tax
-	    = 2000 + 4000
-	    = 6000
+Total Annual Tax
+= 2000 + 4000
+= 6000
 
-	    ## Sample Tax Computation 2
+## Sample Tax Computation 2
 
-	    Annual Salary 200000
+Annual Salary 200000
 
-	    | Salary Bracket | Rate | Taxable Amount | Total Tax |
-	    |---|---|---|---|
-	    | first 0 - 20000 | 0% | 20000 | 0 |
-	    | next 20001-40000 | 10% | 20000 | 2000 |
-	    | next 40001-80000 | 20% | 40000 | 8000 |
-	    | next 80001-180000 | 30% | 100000 | 30000 |
-	    | 180001 and above | 40% | 20000 | 8000 |
+| Salary Bracket | Rate | Taxable Amount | Total Tax |
+|---|---|---|---|
+| first 0 - 20000 | 0% | 20000 | 0 |
+| next 20001-40000 | 10% | 20000 | 2000 |
+| next 40001-80000 | 20% | 40000 | 8000 |
+| next 80001-180000 | 30% | 100000 | 30000 |
+| 180001 and above | 40% | 20000 | 8000 |
 
-	    Total Taxable Amount
-	    = 20000 + 20000 + 40000 + 100000 + 20000
-	    = 200000
+Total Taxable Amount
+= 20000 + 20000 + 40000 + 100000 + 20000
+= 200000
 
-	    Total Annual Tax
-	    = 2000 + 8000 + 30000 + 8000
-	    = 48000
+Total Annual Tax
+= 2000 + 8000 + 30000 + 8000
+= 48000
 
-	    ## Sample Tax Computation 3
+## Sample Tax Computation 3
 
-	    Annual Salary 80150
+Annual Salary 80150
 
-	    | Salary Bracket | Rate | Taxable Amount | Total Tax |
-	    |---|---|---|---|
-	    | first 0 - 20000 | 0% | 20000 | 0 |
-	    | next 20001-40000 | 10% | 20000 | 2000 |
-	    | next 40001-80000 | 20% | 40000 | 8000 |
-	    | next 80001-180000 | 30% | 150 | 45 |
-	    | 180001 and above | 40% | 0 | 0 |
+| Salary Bracket | Rate | Taxable Amount | Total Tax |
+|---|---|---|---|
+| first 0 - 20000 | 0% | 20000 | 0 |
+| next 20001-40000 | 10% | 20000 | 2000 |
+| next 40001-80000 | 20% | 40000 | 8000 |
+| next 80001-180000 | 30% | 150 | 45 |
+| 180001 and above | 40% | 0 | 0 |
 
-	    Total Taxable Amount
-	    = 20000 + 20000 + 40000 + 150
-	    = 80150
+Total Taxable Amount
+= 20000 + 20000 + 40000 + 150
+= 80150
 
-	    Total Annual Tax
-	    = 2000 + 8000 + 45
-	    = 10045
+Total Annual Tax
+= 2000 + 8000 + 45
+= 10045
 
-	    ### Fave Engineering Culture
+### Fave Engineering Culture
 
-	    We just did a video and shared about our product and engineering culture you can [find it here](https://www.linkedin.com/posts/fave-group_wearefave-digitalproduct-product-activity-6592343555904245760-tlQm)
-
-
+We just did a video and shared about our product and engineering culture you can [find it here](https://www.linkedin.com/posts/fave-group_wearefave-digitalproduct-product-activity-6592343555904245760-tlQm)
